@@ -93,6 +93,6 @@ function plugin_run() {
     html_to_code();
 };
 
-add_shortcode( 'text_me_honey_cal', 'plugin_run' );
+add_shortcode( 'TrueCal', 'plugin_run' );
 
 ?>
