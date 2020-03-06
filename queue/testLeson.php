@@ -40,9 +40,9 @@ function html_code(){
                         "cf-phone": document.getElementById('phone').value,
                         "cf-kurse": document.getElementById('kurse').value
                     },
-                    success : function(data) {
+                    success: function(data) {
                         console.log(data)
-                        alert(data);
+                        alert('Сообщение успешно отправлено');
                     },
                     error: function (request, status, error) {
                         alert('error');
@@ -55,8 +55,30 @@ function html_code(){
     </script>
 <?php 
 };
+function load_db_messages(){
+    ?>
+    <h1>Last messages</h1><div id='messes'></div>
+    <script>
+            jQuery(function($) {
+                $.ajax( {
+                    url : "../wp-content/plugins/queue/deep.php?act=1",
+                    type : "GET",
+                    success : function(data) {
+                        console.log(data)
+                        document.getElementById('messes').innerHTML = data
+                        //alert (data); //or use data string to show something else
+                    },
+                    error: function (request, status, error) {
+                        alert(error);
+                        alert('1')
+                    }
+                });
+            })
+    </script>
+<?php
+}
 function admin_console_load(){
-    add_menu_page( 'Manage contact messages', 'Модуль записи на пробное занятие', 'manage_options', 'test-plugin', 'load_db_messages' );
+    add_menu_page( 'Модуль записи на пробное занятие1', 'Модуль записи на пробное занятие', 'manage_options', 'test-plugin', 'load_db_messages' );
 }
 
 add_action('admin_menu', 'admin_console_load');
